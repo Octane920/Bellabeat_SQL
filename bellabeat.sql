@@ -47,7 +47,7 @@ HAVING dups > 1
 
 ;
 
-# determining if there are any wright log duplicates
+# determining if there are any weight log duplicates
 SELECT Id, Date, LogId, COUNT(*) AS dups
 FROM `bellabeat_data_v1.weight_log`
 GROUP BY Id, Date, LogId
