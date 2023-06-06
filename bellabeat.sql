@@ -48,7 +48,6 @@ HAVING dups > 1
 
 ;
 
-
 # Inner joining all 3 tables to determined how many daily records contained, sleep, activity and weight recorded
 SELECT *
 FROM `bellabeat_data_v1.daily_activity` AS da 
