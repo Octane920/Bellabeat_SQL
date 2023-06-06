@@ -59,3 +59,15 @@ ORDER BY da.Id, Date
 # Only 35 rows returned with all 3 recorded
 
 ;
+
+# determined how many Unique Id's that are in daily activity were also present in the weight_log table and the sleep_log table
+SELECT DISTINCT Id
+FROM `bellabeat_data_v1.daily_activity`
+WHERE Id IN (
+	SELECT da.Id
+	FROM `bellabeat_data_v1.daily_activity` AS da 
+	JOIN `bellabeat_data_v1.sleep_log` AS sl
+	ON da.Activity_Date = sl.SleepDay AND da.Id = sl.Id
+	JOIN `bellabeat_data_v1.weight_log` AS wl
+	ON sl.SleepDay = wl.Date AND sl.Id = wl.Id)
+  # Only 5 of the 33 unique Id's were present in all 3 tables pointing to a lack of presences in recording all 3 metrics
