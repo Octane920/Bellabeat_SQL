@@ -48,37 +48,15 @@ HAVING dups > 1
 
 ;
 
-# Looking for IDs in DailyActivity with more or less than 10 characters
-SELECT Id
-FROM DailyActivity
-WHERE LENGTH(Id) > 10 
-OR LENGTH(Id) < 10
-# No values returned; all IDs in DailyActivity have 10 characters
-;
-
-# Looking for IDs in SleepLog with more or less than 10 characters
-SELECT Id
-FROM SleepLog
-WHERE LENGTH(Id) > 10 
-OR LENGTH(Id) < 10
-# No values returned; all IDs in SleepLog have 10 characters
-;
-
-# Looking for IDs in WeightLog with more or less than 10 characters
-SELECT Id
-FROM WeightLog
-WHERE LENGTH(Id) > 10 
-OR LENGTH(Id) < 10
-# No values returned; all IDs in WeightLog have 10 characters
 
 # Inner joining all 3 tables to determined how many daily records contained, sleep, activity and weight recorded
 SELECT *
-FROM DailyActivity AS d 
-JOIN SleepLog AS s
-ON d.ActivityDate = s.SleepDay AND d.Id = s.Id
-JOIN WeightLog AS w
-ON s.SleepDay = w.Date AND s.Id = w.Id
-ORDER BY d.Id, Date
+FROM `bellabeat_data_v1.daily_activity` AS da 
+JOIN `bellabeat_data_v1.sleep_log` AS sl
+ON da.Activity_Date = sl.SleepDay AND da.Id = sl.Id
+JOIN `bellabeat_data_v1.weight_log` AS wl
+ON sl.SleepDay = wl.Date AND sl.Id = wl.Id
+ORDER BY da.Id, Date
 # Only 35 rows returned with all 3 recorded
 
 
