@@ -58,5 +58,4 @@ ON sl.SleepDay = wl.Date AND sl.Id = wl.Id
 ORDER BY da.Id, Date
 # Only 35 rows returned with all 3 recorded
 
-
-
+;
