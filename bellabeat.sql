@@ -21,6 +21,14 @@ FROM bellabeat-capstone-389013.bellabeat_data_v1.weight_log AS weight_log
 
 ;
 
+# Examined how many weight reports were manual vs automatic reports 
+SELECT IsManualReport, COUNT(*) AS reportcount
+FROM `bellabeat_data_v1.weight_log`
+GROUP BY IsManualReport
+# Councluded taht 41 of the total 67 reports were manual and 26 were not. 
+
+;
+
 # determining if there were any duplicate entries in the daily_activity table
 SELECT ID, Activity_Date, COUNT(*) AS dups
 FROM `bellabeat_data_v1.daily_activity`
@@ -71,3 +79,4 @@ WHERE Id IN (
 	JOIN `bellabeat_data_v1.weight_log` AS wl
 	ON sl.SleepDay = wl.Date AND sl.Id = wl.Id)
   # Only 5 of the 33 unique Id's were present in all 3 tables pointing to a lack of presences in recording all 3 metrics
+  
